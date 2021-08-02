@@ -3,6 +3,7 @@ from moviepy.editor import VideoFileClip
 from getpass import getuser
 
 def DownloadMusic(link):
+	''' Download music.'''
 	try:
 		try:
 			os.mkdir('YoutubeDownloaderDir')
@@ -20,9 +21,9 @@ def DownloadMusic(link):
 		vdn_mp4 = f'YoutubeDownloaderDir\\{vdn}.mp4'
 		vdn_mp3 = f'YoutubeDownloaderDir\\{vdn}.mp3'
 	
-		videoclip = VideoFileClip(vdn_mp4)
+		videoclip = VideoFileClip(vdn_mp4, verbose=False)
 		audioclip = videoclip.audio
-		audioclip.write_audiofile(vdn_mp3)
+		audioclip.write_audiofile(vdn_mp3, logger=None)
 		audioclip.close()
 		videoclip.close()
 
@@ -42,6 +43,7 @@ def DownloadMusic(link):
 		return False
 	
 def DownloadVideo(link):
+	''' Download video.'''
 	try:
 		video = youtube.streams.get_highest_resolution()
 		video.download(f'C:\\Users\\{getuser()}\\Downloads')
@@ -77,14 +79,10 @@ ya = input('Just audio? [Y for Yes, anything else for No] ')
 
 print('Downloading it...')
 
-if ya == 'Y':
+if ya.capitalize() == 'Y':
 	vt = DownloadMusic(url)
 	mode = '.mp3'
-
-elif ya == 'y':
-	vt = DownloadMusic(url)
-	mode = '.mp3'
-
+	
 else:
 	vt = DownloadVideo(url)
 	mode = '.mp4'

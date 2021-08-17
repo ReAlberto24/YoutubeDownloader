@@ -75,11 +75,11 @@ except:
 	exit()
 	
 
-ya = input('Just audio? [Y for Yes, anything else for No] ')
+justA = input('Just audio? [Y for Yes, anything else for No] ')
 
 print('Downloading it...')
 
-if ya.capitalize() == 'Y':
+if justA.upper() == 'Y':
 	vt = DownloadMusic(url)
 	mode = '.mp3'
 	
